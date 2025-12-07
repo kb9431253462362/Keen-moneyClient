@@ -15,12 +15,7 @@ public class AirJump extends Module {
         if (mc.options.keyJump.isDown()) {
             
             if (!mc.player.onGround()) {
-                
-                mc.player.onGround = true; 
-                
                 mc.player.jumpFromGround();
-                
-                mc.player.onGround = false;
             }
         }
     }
