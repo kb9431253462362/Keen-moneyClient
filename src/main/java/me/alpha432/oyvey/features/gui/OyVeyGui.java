@@ -19,6 +19,11 @@ import java.util.Comparator;
 public class OyVeyGui extends Screen {
     private static OyVeyGui INSTANCE;
     private static Color colorClipboard = null;
+    
+    /* * ADDED: Static Color object for a dark green accent (RGB: 0, 100, 0)
+     * You will use this in your rendering methods for lines, borders, and text.
+     */
+    public static final Color CLICK_GUI_COLOR = new Color(0, 100, 0); 
 
     static {
         INSTANCE = new OyVeyGui();
@@ -64,7 +69,12 @@ public class OyVeyGui extends Screen {
     @Override
     public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
         Item.context = context;
-        context.fill(0, 0, context.guiWidth(), context.guiHeight(), new Color(0, 0, 0, 120).hashCode());
+        
+        /* * MODIFIED: Changed the background fill to a dark green tint (e.g., R: 0, G: 50, B: 0)
+         * The original transparency (120) is maintained for the dark effect.
+         */
+        context.fill(0, 0, context.guiWidth(), context.guiHeight(), new Color(0, 50, 0, 120).hashCode());
+        
         this.widgets.forEach(components -> components.drawScreen(context, mouseX, mouseY, delta));
     }
 
@@ -108,7 +118,7 @@ public class OyVeyGui extends Screen {
     }
     @Override
     public void renderBackground(GuiGraphics context, int mouseX, int mouseY, float delta) {
-    }//ignore 1.21.8 blur thing
+    }
 
     public final ArrayList<Widget> getComponents() {
         return this.widgets;
