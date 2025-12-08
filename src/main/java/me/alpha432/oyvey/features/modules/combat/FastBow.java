@@ -1,9 +1,8 @@
-package me.gamrboy4life.paradox.module.combat;
+package me.alpha432.oyvey.features.modules.combat;
 
-import org.lwjgl.input.Keyboard;
-
-import me.gamrboy4life.paradox.module.Category;
-import me.gamrboy4life.paradox.module.Module;
+import me.alpha432.oyvey.event.impl.PacketEvent;
+import me.alpha432.oyvey.event.system.Subscribe;
+import me.alpha432.oyvey.features.modules.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemBow;
 import net.minecraft.network.play.client.C03PacketPlayer;
