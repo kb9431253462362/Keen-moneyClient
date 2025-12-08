@@ -1,4 +1,4 @@
-package me.alpha432.oyvey.features.modules.render;
+package me.alpha432.oyvey.features.modules.render; // Changed package assumption to render
 
 import me.alpha432.oyvey.event.impl.Render3DEvent;
 import me.alpha432.oyvey.features.modules.Module;
@@ -15,27 +15,25 @@ public class StorageESP extends Module {
         super("StorageESP", "Highlights storage blocks.", Category.RENDER);
     }
 
-
-   @Override
+    @Override
     public void onRender3D(Render3DEvent event) {
         if (nullCheck()) return;
-        
-        // FIX: Renamed blockEntitys to blockEntities
-        for (BlockEntity blockEntity : mc.level.blockEntities) {
+
+        // FIX: Renamed 'blockEntitys' to 'blockEntities'
+        for (BlockEntity blockEntity : mc.level.blockEntities) { 
             Color color = null;
 
             if (blockEntity instanceof ChestBlockEntity) {
-                color = new Color(255, 170, 0, 180); // Orange for Chest
+                color = new Color(255, 170, 0, 180);
             } else if (blockEntity instanceof EnderChestBlockEntity) {
-                color = new Color(170, 0, 255, 180); // Purple for Ender Chest
+                color = new Color(170, 0, 255, 180);
             } else if (blockEntity instanceof HopperBlockEntity) {
-                color = new Color(100, 100, 100, 180); // Gray for Hopper
+                color = new Color(100, 100, 100, 180);
             }
-            // Add more block entity checks here (e.g., ShulkerBoxBlockEntity)
 
             if (color != null) {
                 BlockPos pos = blockEntity.getBlockPos();
-                // RenderUtil.drawBlockBox(pos, color); 
+                // RenderUtil.drawBlockBox(pos, color); // Placeholder for render utility
             }
         }
     }
