@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 public class Parkour extends Module{
 
 	public Parkour() {
-		super("Parkour", Category.MOVEMENT);
+		super("Parkour", "Auto Parkour", Category.MOVEMENT);
 	}
 	
 	public void onUpdate() {
