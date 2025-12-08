@@ -13,7 +13,7 @@ public class FastPlace extends Module {
     public void onTick() {
         if (nullCheck()) return;
 
-        // FIX: Directly set the item use delay field
+         mc.rightClickDelay = 0;
         mc.player.itemUseCooldown = 0;
     }
 }
