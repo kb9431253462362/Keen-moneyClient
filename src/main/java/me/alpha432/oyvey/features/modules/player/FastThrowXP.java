@@ -3,9 +3,9 @@ package me.alpha432.oyvey.features.modules.player;
 import me.alpha432.oyvey.features.modules.Module;
 import net.minecraft.world.item.Items;
 
-public class FastPlace extends Module {
+public class FastThrowXP extends Module {
     public FastPlace() {
-        super("FastPlace", "Makes you throw exp faster", Category.PLAYER);
+        super("FastThrowXP", "Makes you throw exp faster", Category.PLAYER);
     }
 
     @Override
