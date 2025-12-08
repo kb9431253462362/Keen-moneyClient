@@ -20,7 +20,6 @@ public class AutoGapple extends Module {
         if (mc.player.getHealth() + mc.player.getAbsorptionAmount() <= health.getValue()) {
             
             int gappleSlot = -1;
-            // Search hotbar for God Apple
             for (int i = 0; i < 9; i++) {
                 if (mc.player.getInventory().getItem(i).getItem() == Items.ENCHANTED_GOLDEN_APPLE) {
                     gappleSlot = i;
@@ -29,13 +28,16 @@ public class AutoGapple extends Module {
             }
             
             if (gappleSlot != -1) {
-                int oldSlot = mc.player.getInventory().selected;
-                // Switch to gapple slot
-                mc.player.getInventory().selected = gappleSlot;
-                // Use the item
+                // FIX: Use the local variable 'selected' to store and restore the current slot.
+                int oldSlot = mc.player.getInventory().selected; 
+                
+                // FIX: Use the setter method
+                mc.player.getInventory().setSelected(gappleSlot);
+                
                 mc.gameMode.useItem(mc.player, InteractionHand.MAIN_HAND);
-                // Switch back to old slot
-                mc.player.getInventory().selected = oldSlot;
+                
+                // FIX: Use the setter method
+                mc.player.getInventory().setSelected(oldSlot);
             }
         }
     }
