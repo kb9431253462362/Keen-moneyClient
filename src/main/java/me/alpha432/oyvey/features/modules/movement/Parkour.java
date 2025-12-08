@@ -1,8 +1,9 @@
-package me.alpha432.oyvey.features.modules.movement; 
+package me.alpha432.oyvey.features.modules.movement;
 
 import me.alpha432.oyvey.features.modules.Module;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.Entity; // Keep this, but ensure your environment resolves it correctly
+import net.minecraft.util.shape.VoxelShapes; // Needed for modern collision checks
 
 public class Parkour extends Module{
 
@@ -10,11 +11,18 @@ public class Parkour extends Module{
 		super("Parkour", "Auto Parkour", Category.MOVEMENT);
 	}
 	
+	@Override // Added @Override for clarity
 	public void onUpdate() {
-		if(this.isToggled()) {
-			if(mc.thePlayer.onGround && !mc.thePlayer.isSneaking() && !this.mc.gameSettings.keyBindSneak.pressed &&
-					this.mc.theWorld.getCollidingBoundingBoxes((Entity)mc.thePlayer, mc.thePlayer.getEntityBoundingBox().offset(0.0D, -0.5D, 0.0D).expand(-0.001D, 0.0D, -0.001D)).isEmpty())
-				mc.thePlayer.jump();
+		if(this.isEnabled()) { // FIX: Use isEnabled()
+			if(mc.player.isOnGround() // Check if on ground
+			    && !mc.player.isSneaking() // Check if not sneaking
+			    && !this.mc.options.sneakKey.isPressed() 
+	
+			    && mc.world.isAir(mc.player.getBlockPos().down())) 
+			{
+		
+			    mc.player.jump();
+			}
 		}
 	}
 
