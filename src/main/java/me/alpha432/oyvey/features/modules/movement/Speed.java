@@ -6,10 +6,10 @@ import net.minecraft.world.phys.Vec3;
 public class Speed extends Module {
 
     // Base speed factor (0.2873 is vanilla speed in blocks/tick)
-    private final double BASE_SPEED = 0.2873; 
+    private final double BASE_SPEED = 2; 
     
     // Default factor when not holding Shift
-    private final double DEFAULT_FACTOR = 1.3; 
+    private final double DEFAULT_FACTOR = 3; 
     
     // Boost factor when holding Shift (3x faster than default)
     private final double BOOST_FACTOR = 3.9; // 1.3 * 3 = 3.9
