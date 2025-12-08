@@ -15,11 +15,13 @@ public class StorageESP extends Module {
         super("StorageESP", "Highlights storage blocks.", Category.RENDER);
     }
 
-    @Override
+
+   @Override
     public void onRender3D(Render3DEvent event) {
         if (nullCheck()) return;
-
-        for (BlockEntity blockEntity : mc.level.blockEntitys) {
+        
+        // FIX: Renamed blockEntitys to blockEntities
+        for (BlockEntity blockEntity : mc.level.blockEntities) {
             Color color = null;
 
             if (blockEntity instanceof ChestBlockEntity) {
