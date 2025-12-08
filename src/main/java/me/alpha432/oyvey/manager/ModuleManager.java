@@ -8,7 +8,8 @@ import me.alpha432.oyvey.features.Feature;
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.client.Notifications;
-import me.alpha432.oyvey.features.modules.hud.*;
+import me.alpha432.oyvey.features.modules.hud.Coordinates; // Added for completeness
+import me.alpha432.oyvey.features.modules.hud.Watermark; // Added for completeness
 import me.alpha432.oyvey.features.modules.client.HudEditor;
 import me.alpha432.oyvey.features.modules.combat.Criticals;
 import me.alpha432.oyvey.features.modules.misc.MCF;
@@ -28,13 +29,16 @@ import me.alpha432.oyvey.features.modules.movement.Flight;
 import me.alpha432.oyvey.features.modules.movement.SafeWalk;
 import me.alpha432.oyvey.features.modules.player.FastThrowXP;
 import me.alpha432.oyvey.features.modules.combat.AutoCrystal;
-
 import me.alpha432.oyvey.features.modules.combat.Killaura;
 import me.alpha432.oyvey.features.modules.combat.Reach;
 import me.alpha432.oyvey.features.modules.combat.Surround;
+import me.alpha432.oyvey.features.modules.render.StorageESP;
+import me.alpha432.oyvey.features.modules.render.ESP;
+import me.alpha432.oyvey.features.modules.movement.AutoRun;
 
-import me.alpha432.oyvey.features.modules.render.PlayerESP; 
-
+// Assuming these two modules were created in previous steps
+import me.alpha432.oyvey.features.modules.player.AutoSprint;
+import me.alpha432.oyvey.features.modules.render.Fullbright;
 
 
 import java.util.*;
@@ -45,38 +49,50 @@ public class ModuleManager implements Jsonable, Util {
     private final List<Module> modules = new ArrayList<>();
 
     public void init() {
+        // --- HUD Modules ---
         register(new Watermark());
         register(new Coordinates());
         register(new HudEditor());
+        
+        // --- Client Modules ---
         register(new ClickGui());
         register(new Notifications());
+        
+        // --- Combat Modules ---
         register(new Criticals());
-        register(new MCF());
+        register(new AutoCrystal());
+        register(new Killaura());
+        register(new Reach());
+        register(new Surround());
+        
+        // --- Movement Modules ---
         register(new Step());
         register(new ReverseStep());
-        register(new FastPlace());
-        register(new Velocity());
-        register(new BlockHighlight());
-        register(new NoFall());
-        
         register(new Speed());
         register(new Spider());
         register(new Jesus());
         register(new AirJump());
         register(new Flight());
         register(new SafeWalk());
-        
-        register(new FastThrowXP());
-   
-        
-        register(new AutoCrystal());
-    
-        register(new Killaura());
-        register(new Reach());
-        register(new Surround());
+        register(new AutoRun()); // <-- NEW
 
-        register(new PlayerESP());
-       
+        // --- Player Modules ---
+        register(new FastPlace());
+        register(new Velocity());
+        register(new NoFall());
+        register(new FastThrowXP());
+        register(new AutoSprint()); // <-- NEW (Assuming you created this)
+
+        // --- Misc Modules ---
+        register(new MCF());
+
+        // --- Render Modules ---
+        register(new BlockHighlight());
+        register(new StorageESP()); // <-- NEW
+        register(new ESP()); // <-- NEW
+        register(new Fullbright()); // <-- NEW (Assuming you created this)
+        
+        // Removed `register(new PlayerESP());` as it was likely a placeholder for ESP or AutoSprint
     }
 
     public void register(Module module) {
