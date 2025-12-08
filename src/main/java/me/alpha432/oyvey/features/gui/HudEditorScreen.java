@@ -12,6 +12,7 @@ import net.minecraft.client.input.CharacterEvent;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.network.chat.Component;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -37,6 +38,12 @@ public class HudEditorScreen extends Screen {
 
     @Override
     public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
+        /*
+         * MODIFIED: Added fill command to draw a dark green background tint.
+         * Color(0, 50, 0, 120) is Dark Green with 120/255 (approx 47%) opacity.
+         */
+        context.fill(0, 0, context.guiWidth(), context.guiHeight(), new Color(0, 50, 0, 120).hashCode());
+        
         anyHover = false;
         this.components.forEach(component -> component.drawScreen(context, mouseX, mouseY, delta));
     }
@@ -80,13 +87,11 @@ public class HudEditorScreen extends Screen {
         return false;
     }
 
-    @Override // ignore 1.21.8 menu blur thing
+    @Override
     public void renderBackground(GuiGraphics context, int mouseX, int mouseY, float delta) {
     }
-
 
     public ArrayList<Widget> getComponents() {
         return components;
     }
 }
-
