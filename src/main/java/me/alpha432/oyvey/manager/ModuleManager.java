@@ -42,6 +42,10 @@ public class ModuleManager implements Jsonable, Util {
         register(new Velocity());
         register(new BlockHighlight());
         register(new NoFall());
+        register(new Speed());
+        register(new Spider());
+        register(new Jesus());
+        register(new AirJump());
     }
 
     public void register(Module module) {
