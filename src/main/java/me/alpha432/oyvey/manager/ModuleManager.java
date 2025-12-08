@@ -24,6 +24,7 @@ import me.alpha432.oyvey.features.modules.movement.AirJump;
 import me.alpha432.oyvey.features.modules.movement.Speed;
 import me.alpha432.oyvey.features.modules.movement.Spider;
 import me.alpha432.oyvey.features.modules.movement.Jesus;
+import me.alpha432.oyvey.features.modules.movement.Flight;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -50,6 +51,7 @@ public class ModuleManager implements Jsonable, Util {
         register(new Spider());
         register(new Jesus());
         register(new AirJump());
+        register(new Flight());
     }
 
     public void register(Module module) {
