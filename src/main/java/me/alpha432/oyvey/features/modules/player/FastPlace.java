@@ -12,7 +12,7 @@ public class FastPlace extends Module {
     public void onTick() {
         if (nullCheck()) return;
 
-        
+          mc.rightClickDelay = 0;
         mc.player.itemUseCooldown = 0;
     }
 }
