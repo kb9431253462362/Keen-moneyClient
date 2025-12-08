@@ -28,13 +28,13 @@ import me.alpha432.oyvey.features.modules.movement.Flight;
 import me.alpha432.oyvey.features.modules.movement.SafeWalk;
 import me.alpha432.oyvey.features.modules.player.FastThrowXP;
 import me.alpha432.oyvey.features.modules.combat.AutoCrystal;
-import me.alpha432.oyvey.features.modules.combat.AutoGapple;
+
 import me.alpha432.oyvey.features.modules.combat.Killaura;
 import me.alpha432.oyvey.features.modules.combat.Reach;
 import me.alpha432.oyvey.features.modules.combat.Surround;
-import me.alpha432.oyvey.features.modules.player.AutoTool; 
+
 import me.alpha432.oyvey.features.modules.render.PlayerESP; 
-import me.alpha432.oyvey.features.modules.render.StorageESP; 
+
 
 
 import java.util.*;
@@ -67,16 +67,16 @@ public class ModuleManager implements Jsonable, Util {
         register(new SafeWalk());
         
         register(new FastThrowXP());
-        register(new AutoTool());
+   
         
         register(new AutoCrystal());
-        register(new AutoGapple());
+    
         register(new Killaura());
         register(new Reach());
         register(new Surround());
 
         register(new PlayerESP());
-        register(new StorageESP());
+       
     }
 
     public void register(Module module) {
