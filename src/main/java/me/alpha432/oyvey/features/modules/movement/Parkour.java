@@ -1,9 +1,7 @@
-package me.gamrboy4life.paradox.module.movement;
+package me.alpha432.oyvey.features.modules.movement; 
 
-import org.lwjgl.input.Keyboard;
+import me.alpha432.oyvey.features.modules.Module;
 
-import me.gamrboy4life.paradox.module.Category;
-import me.gamrboy4life.paradox.module.Module;
 import net.minecraft.entity.Entity;
 
 public class Parkour extends Module{
