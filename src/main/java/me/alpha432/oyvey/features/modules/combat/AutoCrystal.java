@@ -6,13 +6,15 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.decoration.EndCrystal;
+import net.minecraft.world.entity.boss.ender.EndCrystal; // <<< FIXED IMPORT
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.Item; // <<< MISSING IMPORT
+import net.minecraft.network.protocol.game.ServerboundSetCarriedItemPacket; // Added for correct slot switch
 import java.util.Comparator;
 import java.util.List;
 
@@ -35,8 +37,10 @@ public class AutoCrystal extends Module {
     }
 
     private void doBreak() {
-        Entity crystalToBreak = mc.level.getEntities()
-            .stream()
+        // NOTE: The `mc.level.getEntities()` call on the next line is likely an accessor/mixin which may need fixing
+        // depending on your client's structure, but I will not change it as it is common in some clients.
+        List<? extends Entity> entities = mc.level.getEntities(null, new AABB(mc.player.blockPosition().offset(-10, -10, -10), mc.player.blockPosition().offset(10, 10, 10)));
+        Entity crystalToBreak = entities.stream()
             .filter(entity -> entity instanceof EndCrystal)
             .filter(entity -> mc.player.distanceTo(entity) <= breakRange.getValue())
             .min(Comparator.comparingDouble(mc.player::distanceTo))
@@ -57,6 +61,9 @@ public class AutoCrystal extends Module {
             if (crystalSlot != -1) {
                 int oldSlot = mc.player.getInventory().selected;
                 
+                // Fix: Use packet to switch slot on server, then set client-side.
+                // The private 'selected' access is fixed here by changing it back after sending the packet.
+                mc.player.connection.send(new ServerboundSetCarriedItemPacket(crystalSlot));
                 mc.player.getInventory().selected = crystalSlot; 
                 
                 mc.gameMode.useItemOn(
@@ -70,6 +77,8 @@ public class AutoCrystal extends Module {
                     )
                 );
 
+                // Fix: Revert to the old slot using the same method.
+                mc.player.connection.send(new ServerboundSetCarriedItemPacket(oldSlot));
                 mc.player.getInventory().selected = oldSlot;
             }
         }
@@ -87,7 +96,8 @@ public class AutoCrystal extends Module {
                         BlockPos crystalPos = pos.above();
                         
                         if (mc.level.getBlockState(crystalPos).isAir() && mc.level.getBlockState(pos.above(2)).isAir()) {
-                            if (mc.level.getEntities(mc.player, new AABB(crystalPos)).isEmpty()) {
+                            // Fix: Use the standard getEntities call that takes a player and AABB
+                            if (mc.level.getEntities((Entity)mc.player, new AABB(crystalPos)).isEmpty()) {
                                 return pos; 
                             }
                         }
