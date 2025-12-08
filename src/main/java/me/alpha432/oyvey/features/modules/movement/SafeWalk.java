@@ -18,11 +18,11 @@ public class SafeWalk extends Module {
         Vec3 forward = mc.player.getForward();
         BlockPos nextBlockPos = mc.player.getOnPos().offset((int) forward.x, -1, (int) forward.z);
         
-        Level level = mc.level;
-        if (level.isEmptyBlock(nextBlockPos) && mc.player.onGround()) {
-             if (mc.options.keyForward.isDown()) {
-                 mc.options.keyForward.setDown(false);
+      if (level.isEmptyBlock(nextBlockPos) && mc.player.onGround()) {
+             // FIX: keyForward changed to keyUp
+             if (mc.options.keyUp.isDown()) {
+                 // FIX: keyForward changed to keyUp
+                 mc.options.keyUp.setDown(false);
              }
         }
-    }
 }
