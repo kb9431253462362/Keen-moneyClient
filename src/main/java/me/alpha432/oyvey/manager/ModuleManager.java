@@ -31,10 +31,8 @@ import me.alpha432.oyvey.features.modules.player.FastThrowXP;
 import me.alpha432.oyvey.features.modules.combat.AutoCrystal;
 import me.alpha432.oyvey.features.modules.combat.Killaura;
 import me.alpha432.oyvey.features.modules.combat.Reach;
-import me.alpha432.oyvey.features.modules.combat.Surround;
-import me.alpha432.oyvey.features.modules.render.StorageESP;
-import me.alpha432.oyvey.features.modules.render.ESP;
-import me.alpha432.oyvey.features.modules.movement.AutoRun;
+
+
 
 // Assuming these two modules were created in previous steps
 import me.alpha432.oyvey.features.modules.player.AutoSprint;
@@ -63,7 +61,7 @@ public class ModuleManager implements Jsonable, Util {
         register(new AutoCrystal());
         register(new Killaura());
         register(new Reach());
-        register(new Surround());
+       
         
         // --- Movement Modules ---
         register(new Step());
@@ -74,7 +72,7 @@ public class ModuleManager implements Jsonable, Util {
         register(new AirJump());
         register(new Flight());
         register(new SafeWalk());
-        register(new AutoRun()); // <-- NEW
+    
 
         // --- Player Modules ---
         register(new FastPlace());
@@ -88,9 +86,7 @@ public class ModuleManager implements Jsonable, Util {
 
         // --- Render Modules ---
         register(new BlockHighlight());
-        register(new StorageESP()); // <-- NEW
-        register(new ESP()); // <-- NEW
-        register(new Fullbright()); // <-- NEW (Assuming you created this)
+  <-- NEW (Assuming you created this)
         
         // Removed `register(new PlayerESP());` as it was likely a placeholder for ESP or AutoSprint
     }
