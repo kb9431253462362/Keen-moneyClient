@@ -8,7 +8,8 @@ import me.alpha432.oyvey.features.settings.Setting;
 import me.alpha432.oyvey.util.TextUtil;
 
 public class Watermark extends HudModule {
-    public Setting<String> text = str("Text", OyVey.NAME);
+    // Setting the default value directly to "Keen-moneyClient"
+    public Setting<String> text = str("Text", "Keen-moneyClient");
 
     public Watermark() {
         super("Watermark", "Display watermark", 100, 10);
@@ -27,4 +28,3 @@ public class Watermark extends HudModule {
         setHeight(mc.font.lineHeight);
     }
 }
-
