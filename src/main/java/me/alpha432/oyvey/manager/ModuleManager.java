@@ -32,9 +32,9 @@ import me.alpha432.oyvey.features.modules.combat.AutoGapple;
 import me.alpha432.oyvey.features.modules.combat.Killaura;
 import me.alpha432.oyvey.features.modules.combat.Reach;
 import me.alpha432.oyvey.features.modules.combat.Surround;
-import me.alpha432.oyvey.features.modules.misc.AutoTool;
-import me.alpha432.oyvey.features.modules.misc.PlayerESP;
-import me.alpha432.oyvey.features.modules.misc.StorageESP;
+import me.alpha432.oyvey.features.modules.player.AutoTool; // Assuming AutoTool is in player
+import me.alpha432.oyvey.features.modules.render.PlayerESP; // Assuming ESPs are in render
+import me.alpha432.oyvey.features.modules.render.StorageESP; // Assuming ESPs are in render
 
 
 import java.util.*;
@@ -59,32 +59,28 @@ public class ModuleManager implements Jsonable, Util {
         register(new BlockHighlight());
         register(new NoFall());
         
-        // --- START NEW MOVEMENT MODULES ---
+        // MOVEMENT MODULES
         register(new Speed());
         register(new Spider());
         register(new Jesus());
         register(new AirJump());
         register(new Flight());
         register(new SafeWalk());
-        // --- END NEW MOVEMENT MODULES ---
         
-        // --- START NEW PLAYER/UTILITY MODULES ---
+        // PLAYER/UTILITY MODULES
         register(new FastThrowXP());
         register(new AutoTool());
-        // --- END NEW PLAYER/UTILITY MODULES ---
-
-        // --- START NEW COMBAT MODULES ---
+        
+        // COMBAT MODULES
         register(new AutoCrystal());
         register(new AutoGapple());
         register(new Killaura());
         register(new Reach());
         register(new Surround());
-        // --- END NEW COMBAT MODULES ---
 
-        // --- START NEW RENDER/MISC MODULES ---
+        // RENDER MODULES
         register(new PlayerESP());
         register(new StorageESP());
-        // --- END NEW RENDER/MISC MODULES ---
     }
 
     public void register(Module module) {
