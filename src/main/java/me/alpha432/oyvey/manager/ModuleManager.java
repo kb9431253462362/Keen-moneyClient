@@ -46,7 +46,7 @@ public class ModuleManager implements Jsonable, Util {
     private final Map<Class<? extends Module>, Module> fastRegistry = new HashMap<>();
     private final List<Module> modules = new ArrayList<>();
 
-    public void init() {
+  public void init() {
         // --- HUD Modules ---
         register(new Watermark());
         register(new Coordinates());
@@ -61,7 +61,7 @@ public class ModuleManager implements Jsonable, Util {
         register(new AutoCrystal());
         register(new Killaura());
         register(new Reach());
-       
+        
         
         // --- Movement Modules ---
         register(new Step());
@@ -79,18 +79,17 @@ public class ModuleManager implements Jsonable, Util {
         register(new Velocity());
         register(new NoFall());
         register(new FastThrowXP());
-        register(new AutoSprint()); // <-- NEW (Assuming you created this)
+        register(new AutoSprint()); 
 
         // --- Misc Modules ---
         register(new MCF());
 
         // --- Render Modules ---
         register(new BlockHighlight());
-  <-- NEW (Assuming you created this)
+        // REMOVED:   <-- NEW (Assuming you created this)
         
         // Removed `register(new PlayerESP());` as it was likely a placeholder for ESP or AutoSprint
     }
-
     public void register(Module module) {
         getModules().add(module);
         fastRegistry.put(module.getClass(), module);
