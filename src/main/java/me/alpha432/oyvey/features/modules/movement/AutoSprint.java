@@ -1,40 +1,27 @@
 package me.alpha432.oyvey.features.modules.player;
 
 import me.alpha432.oyvey.features.modules.Module;
+import me.alpha432.oyvey.features.modules.Module.Category;
+import org.lwjgl.input.Keyboard;
 
 public class AutoSprint extends Module {
 
     public AutoSprint() {
-        super("AutoSprint", "Automatically sprints when you walk forward.", Category.PLAYER);
+        super("AutoSprint", "Automatically sprints when you walk forward.", Category.MOVEMENT);
+        this.setBind(Keyboard.KEY_F);
     }
 
-    @Override
-    public void onTick() {
-        if (nullCheck()) return;
-
-        // 1. Check if the player is pressing the forward key (W)
-        // FIX: Changed keyForward to keyMoveForward
-        if (mc.options.keyMoveForward.isDown()) {
-            
-            // 2. Check if the player is currently able to sprint
-            if (canSprint()) {
-                
-                // 3. Set the sprint flag
-                mc.player.setSprinting(true);
-            }
+    public void onEnable() {
+        if (mc.player != null) { 
+            mc.player.setSprinting(true);
         }
+        super.onEnable();
     }
 
-    private boolean canSprint() {
-        // Checks if the player meets all standard Minecraft sprint requirements:
-        // FIX: Changed isSSprinting() to isSprinting()
-        return !mc.player.isSprinting()          // Player is not already trying to sprint (redundant but safe)
-               && !mc.player.isCrouching()      // Not sneaking
-               && !mc.player.getAbilities().flying // Not flying/spectator
-               && !mc.player.isPassenger()       // Not riding an entity
-               && mc.player.getFoodData().getFoodLevel() > 6 // Enough hunger
-               && mc.player.getVehicle() == null; // No vehicle
+    public void onDisable() {
+        if (mc.player != null) {
+            mc.player.setSprinting(false);
+        }
+        super.onDisable();
     }
-    
-    // No need for onDisable logic here since we are not forcing the W key down.
 }
