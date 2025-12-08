@@ -32,14 +32,7 @@ import me.alpha432.oyvey.features.modules.movement.Parkour;
 import me.alpha432.oyvey.features.modules.movement.Scaffold;
 import me.alpha432.oyvey.features.modules.combat.Killaura;
 import me.alpha432.oyvey.features.modules.combat.Reach;
-
-import me.alpha432.oyvey.features.modules.combat.FastBow;
-
-
-// Assuming these two modules were created in previous steps
-
-
-
+import me.alpha432.oyvey.features.modules.combat.FastBow; // Imported but not registered
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -49,47 +42,47 @@ public class ModuleManager implements Jsonable, Util {
     private final List<Module> modules = new ArrayList<>();
 
   public void init() {
-        // --- HUD Modules ---
-        register(new Watermark());
-        register(new Coordinates());
-        register(new HudEditor());
-        
-        // --- Client Modules ---
-        register(new ClickGui());
-        register(new Notifications());
-        
-        // --- Combat Modules ---
-        register(new Criticals());
- 
-        register(new Killaura());
-        register(new Reach());
-        
-        
-        // --- Movement Modules ---
-        register(new Step());
-        register(new ReverseStep());
-        register(new Speed());
-        register(new Spider());
-        register(new Jesus());
-        register(new AirJump());
-        register(new Flight());
-        register(new SafeWalk());
+    // --- HUD Modules ---
+    register(new Watermark());
+    register(new Coordinates());
+    register(new HudEditor());
+    
+    // --- Client Modules ---
+    register(new ClickGui());
+    register(new Notifications());
+    
+    // --- Combat Modules ---
+    register(new Criticals());
+    register(new Killaura());
+    register(new Reach());
+    register(new FastBow()); // <--- ADDED
+    
+    // --- Movement Modules ---
+    register(new Step());
+    register(new ReverseStep());
+    register(new Speed());
+    register(new Spider());
+    register(new Jesus());
+    register(new AirJump());
+    register(new Flight());
+    register(new SafeWalk());
+    register(new Parkour()); // <--- ADDED
+    register(new Scaffold()); // <--- ADDED
+
+    // --- Player Modules ---
+    register(new FastPlace());
+    register(new Velocity());
+    register(new NoFall());
+    register(new FastThrowXP());
     
 
-        // --- Player Modules ---
-        register(new FastPlace());
-        register(new Velocity());
-        register(new NoFall());
-        register(new FastThrowXP());
-   
+    // --- Misc Modules ---
+    register(new MCF());
 
-        // --- Misc Modules ---
-        register(new MCF());
-
-        // --- Render Modules ---
-        register(new BlockHighlight());
-      
-    }
+    // --- Render Modules ---
+    register(new BlockHighlight());
+    
+  }
     public void register(Module module) {
         getModules().add(module);
         fastRegistry.put(module.getClass(), module);
