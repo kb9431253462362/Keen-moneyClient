@@ -42,7 +42,7 @@ public class HudEditorScreen extends Screen {
          * MODIFIED: Added fill command to draw a dark green background tint.
          * Color(0, 50, 0, 120) is Dark Green with 120/255 (approx 47%) opacity.
          */
-        context.fill(0, 0, context.guiWidth(), context.guiHeight(), new Color(0, 50, 0, 120).hashCode());
+       context.fill(0, 0, context.guiWidth(), context.guiHeight(), new Color(80, 80, 80, 120).hashCode());
         
         anyHover = false;
         this.components.forEach(component -> component.drawScreen(context, mouseX, mouseY, delta));
