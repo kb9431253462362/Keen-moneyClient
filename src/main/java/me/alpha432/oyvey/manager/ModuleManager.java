@@ -26,6 +26,16 @@ import me.alpha432.oyvey.features.modules.movement.Spider;
 import me.alpha432.oyvey.features.modules.movement.Jesus;
 import me.alpha432.oyvey.features.modules.movement.Flight;
 import me.alpha432.oyvey.features.modules.movement.SafeWalk;
+import me.alpha432.oyvey.features.modules.player.FastThrowXP;
+import me.alpha432.oyvey.features.modules.combat.AutoCrystal;
+import me.alpha432.oyvey.features.modules.combat.AutoGapple;
+import me.alpha432.oyvey.features.modules.combat.Killaura;
+import me.alpha432.oyvey.features.modules.combat.Reach;
+import me.alpha432.oyvey.features.modules.combat.Surround;
+import me.alpha432.oyvey.features.modules.misc.AutoTool;
+import me.alpha432.oyvey.features.modules.misc.PlayerESP;
+import me.alpha432.oyvey.features.modules.misc.StorageESP;
+
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -48,12 +58,33 @@ public class ModuleManager implements Jsonable, Util {
         register(new Velocity());
         register(new BlockHighlight());
         register(new NoFall());
+        
+        // --- START NEW MOVEMENT MODULES ---
         register(new Speed());
         register(new Spider());
         register(new Jesus());
         register(new AirJump());
         register(new Flight());
         register(new SafeWalk());
+        // --- END NEW MOVEMENT MODULES ---
+        
+        // --- START NEW PLAYER/UTILITY MODULES ---
+        register(new FastThrowXP());
+        register(new AutoTool());
+        // --- END NEW PLAYER/UTILITY MODULES ---
+
+        // --- START NEW COMBAT MODULES ---
+        register(new AutoCrystal());
+        register(new AutoGapple());
+        register(new Killaura());
+        register(new Reach());
+        register(new Surround());
+        // --- END NEW COMBAT MODULES ---
+
+        // --- START NEW RENDER/MISC MODULES ---
+        register(new PlayerESP());
+        register(new StorageESP());
+        // --- END NEW RENDER/MISC MODULES ---
     }
 
     public void register(Module module) {
