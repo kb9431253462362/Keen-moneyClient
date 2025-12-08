@@ -20,6 +20,10 @@ import me.alpha432.oyvey.features.modules.player.Velocity;
 import me.alpha432.oyvey.features.modules.render.BlockHighlight;
 import me.alpha432.oyvey.util.traits.Jsonable;
 import me.alpha432.oyvey.util.traits.Util;
+import me.alpha432.oyvey.features.modules.movement.AirJump;
+import me.alpha432.oyvey.features.modules.movement.Speed;
+import me.alpha432.oyvey.features.modules.movement.Spider;
+import me.alpha432.oyvey.features.modules.movement.Jesus;
 
 import java.util.*;
 import java.util.stream.Stream;
