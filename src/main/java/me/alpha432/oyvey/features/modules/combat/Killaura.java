@@ -6,6 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.InteractionHand; // Added import for InteractionHand
 import java.util.Comparator;
 
 public class Killaura extends Module {
@@ -23,13 +24,14 @@ public class Killaura extends Module {
         if (nullCheck()) return;
 
         LocalPlayer player = mc.player;
-        if (player.getAttackStrengthScale(0.0F) < 1.0F) return; // Wait for attack cooldown
+        if (player.getAttackStrengthScale(0.0F) < 1.0F) return;
 
         Entity target = findTarget();
         
         if (target != null) {
             mc.gameMode.attack(player, target);
-            player.swing(target.swingingArm);
+            // FIX: Use InteractionHand.MAIN_HAND for swinging
+            player.swing(InteractionHand.MAIN_HAND); 
         }
     }
 
