@@ -9,10 +9,11 @@ public class FastPlace extends Module {
     }
 
     @Override
+   @Override
     public void onTick() {
         if (nullCheck()) return;
 
-        // Directly set the block break/use delay to 0
-        mc.gameMode.setDestroyProgress(0.0f); 
+        // FIX: Directly set the item use delay field
+        mc.player.itemUseCooldown = 0;
     }
 }
