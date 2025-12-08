@@ -13,6 +13,6 @@ public class FastPlace extends Module {
         if (nullCheck()) return;
 
           mc.rightClickDelay = 0;
-        mc.player.itemUseCooldown = 0;
+      
     }
 }
