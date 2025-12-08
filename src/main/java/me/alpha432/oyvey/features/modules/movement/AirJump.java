@@ -2,48 +2,51 @@ package me.alpha432.oyvey.features.modules.movement;
 
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.settings.Setting;
-import net.minecraft.world.phys.Vec3; // You will likely need this import
+import net.minecraft.world.phys.Vec3; // Required for handling player velocity
 
 public class AirJump extends Module {
+
+    // ⚙️ GUI Setting: Allows the user to configure the jump power.
+    private final Setting<Double> jumpHeight = num("JumpHeight", 0.42, 0.1, 1.0);
     
-    // Original setting (can be kept or removed)
-    private final Setting<Boolean> checkGround = bool("CheckGround", true); 
-    private final Setting<Double> jumpHeight = num("JumpHeight", 0.42, 0.1, 1.0); // New setting for control
+    // ⚙️ GUI Setting: Allows the user to toggle an optional check for ground.
+    private final Setting<Boolean> preventGroundJump = bool("PreventGroundJump", true);
+
 
     public AirJump() {
-        super("AirJump", "Allows jumping while airborne.", Category.MOVEMENT);
+        // Module Name, Description, and Category are defined here.
+        super("AirJump", "Allows jumping repeatedly while airborne.", Category.MOVEMENT);
     }
+
+    // This module does not require onEnable or onDisable cleanup.
 
     @Override
     public void onTick() {
-        if (mc.player == null) return;
+        if (nullCheck()) return;
 
-        // Skip if the player is not pressing the jump key or is on the ground (optional check)
+        // 1. Check if the player is pressing the jump key (Spacebar)
         if (!mc.options.keyJump.isDown()) {
             return;
         }
+
+        // 2. Check if we should prevent jumping while on the ground (optional setting)
+        if (preventGroundJump.getValue() && mc.player.onGround()) {
+             return;
+        }
         
-        // This check is the original jump prevention, which you might want to remove for pure air jump
-        // if (checkGround.getValue() && mc.player.onGround()) {
-        //    return;
-        // }
-
-        // --- CORE FIX: Force an upward velocity change ---
-
-        if (!mc.player.onGround()) { // Only apply the jump if NOT on the ground
-            // 1. Get the current velocity
+        // 3. CORE LOGIC: Apply the air jump if the player is NOT on the ground.
+        if (!mc.player.onGround()) {
+            
+            // Get the current horizontal velocity to maintain momentum
             Vec3 currentVelocity = mc.player.getDeltaMovement();
             
-            // 2. Set the Y-velocity (vertical) to the custom jump height
+            // Apply new velocity: keep X and Z, set Y to the value of the 'JumpHeight' setting.
+            // This bypasses Minecraft's internal ground check for jumping.
             mc.player.setDeltaMovement(
                 currentVelocity.x, 
-                jumpHeight.getValue(), // Use the setting for the jump height
+                jumpHeight.getValue(), 
                 currentVelocity.z
             );
-            
-            // If the key is held, this will keep running, resulting in a type of 'fly'. 
-            // For a single air jump, you would add an extra check or use an event handler 
-            // for the key press instead of onTick.
         }
     }
 }
