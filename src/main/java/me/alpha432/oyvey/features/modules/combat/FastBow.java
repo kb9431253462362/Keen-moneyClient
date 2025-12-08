@@ -14,7 +14,7 @@ import net.minecraft.util.EnumFacing;
 public class FastBow extends Module{
 
 	public FastBow() {
-		super("FastBow", Keyboard.KEY_B, Category.COMBAT);
+		super("FastBow", Category.COMBAT);
 	}
 	@Override
 	public void onUpdate() {
