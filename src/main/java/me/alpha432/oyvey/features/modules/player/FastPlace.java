@@ -9,11 +9,10 @@ public class FastPlace extends Module {
     }
 
     @Override
-   @Override
     public void onTick() {
         if (nullCheck()) return;
 
-         mc.rightClickDelay = 0;
+        
         mc.player.itemUseCooldown = 0;
     }
 }
