@@ -32,9 +32,9 @@ import me.alpha432.oyvey.features.modules.combat.AutoGapple;
 import me.alpha432.oyvey.features.modules.combat.Killaura;
 import me.alpha432.oyvey.features.modules.combat.Reach;
 import me.alpha432.oyvey.features.modules.combat.Surround;
-import me.alpha432.oyvey.features.modules.player.AutoTool; // Assuming AutoTool is in player
-import me.alpha432.oyvey.features.modules.render.PlayerESP; // Assuming ESPs are in render
-import me.alpha432.oyvey.features.modules.render.StorageESP; // Assuming ESPs are in render
+import me.alpha432.oyvey.features.modules.player.AutoTool; 
+import me.alpha432.oyvey.features.modules.render.PlayerESP; 
+import me.alpha432.oyvey.features.modules.render.StorageESP; 
 
 
 import java.util.*;
@@ -59,7 +59,6 @@ public class ModuleManager implements Jsonable, Util {
         register(new BlockHighlight());
         register(new NoFall());
         
-        // MOVEMENT MODULES
         register(new Speed());
         register(new Spider());
         register(new Jesus());
@@ -67,18 +66,15 @@ public class ModuleManager implements Jsonable, Util {
         register(new Flight());
         register(new SafeWalk());
         
-        // PLAYER/UTILITY MODULES
         register(new FastThrowXP());
         register(new AutoTool());
         
-        // COMBAT MODULES
         register(new AutoCrystal());
         register(new AutoGapple());
         register(new Killaura());
         register(new Reach());
         register(new Surround());
 
-        // RENDER MODULES
         register(new PlayerESP());
         register(new StorageESP());
     }
