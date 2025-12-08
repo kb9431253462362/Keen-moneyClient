@@ -13,7 +13,8 @@ public class AutoSprint extends Module {
         if (nullCheck()) return;
 
         // 1. Check if the player is pressing the forward key (W)
-        if (mc.options.keyForward.isDown()) {
+        // FIX: Changed keyForward to keyMoveForward
+        if (mc.options.keyMoveForward.isDown()) {
             
             // 2. Check if the player is currently able to sprint
             if (canSprint()) {
@@ -26,10 +27,11 @@ public class AutoSprint extends Module {
 
     private boolean canSprint() {
         // Checks if the player meets all standard Minecraft sprint requirements:
-        return !mc.player.isSSprinting()          // Player is not already trying to sprint (redundant but safe)
-               && !mc.player.isCrouching()        // Not sneaking
+        // FIX: Changed isSSprinting() to isSprinting()
+        return !mc.player.isSprinting()          // Player is not already trying to sprint (redundant but safe)
+               && !mc.player.isCrouching()      // Not sneaking
                && !mc.player.getAbilities().flying // Not flying/spectator
-               && !mc.player.isPassenger()        // Not riding an entity
+               && !mc.player.isPassenger()       // Not riding an entity
                && mc.player.getFoodData().getFoodLevel() > 6 // Enough hunger
                && mc.player.getVehicle() == null; // No vehicle
     }
