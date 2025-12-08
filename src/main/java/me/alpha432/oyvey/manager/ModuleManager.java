@@ -28,11 +28,10 @@ import me.alpha432.oyvey.features.modules.movement.Jesus;
 import me.alpha432.oyvey.features.modules.movement.Flight;
 import me.alpha432.oyvey.features.modules.movement.SafeWalk;
 import me.alpha432.oyvey.features.modules.player.FastThrowXP;
-import me.alpha432.oyvey.features.modules.movement.Parkour;
-import me.alpha432.oyvey.features.modules.movement.Scaffold;
+
 import me.alpha432.oyvey.features.modules.combat.Killaura;
 import me.alpha432.oyvey.features.modules.combat.Reach;
-import me.alpha432.oyvey.features.modules.combat.FastBow; // Imported but not registered
+
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -55,7 +54,7 @@ public class ModuleManager implements Jsonable, Util {
     register(new Criticals());
     register(new Killaura());
     register(new Reach());
-    register(new FastBow()); // <--- ADDED
+
     
     // --- Movement Modules ---
     register(new Step());
@@ -66,8 +65,7 @@ public class ModuleManager implements Jsonable, Util {
     register(new AirJump());
     register(new Flight());
     register(new SafeWalk());
-    register(new Parkour()); // <--- ADDED
-    register(new Scaffold()); // <--- ADDED
+
 
     // --- Player Modules ---
     register(new FastPlace());
