@@ -28,10 +28,12 @@ import me.alpha432.oyvey.features.modules.movement.Jesus;
 import me.alpha432.oyvey.features.modules.movement.Flight;
 import me.alpha432.oyvey.features.modules.movement.SafeWalk;
 import me.alpha432.oyvey.features.modules.player.FastThrowXP;
-
+import me.alpha432.oyvey.features.modules.movement.Parkour;
+import me.alpha432.oyvey.features.modules.movement.Scaffold;
 import me.alpha432.oyvey.features.modules.combat.Killaura;
 import me.alpha432.oyvey.features.modules.combat.Reach;
 
+import me.alpha432.oyvey.features.modules.combat.FastBow;
 
 
 // Assuming these two modules were created in previous steps
