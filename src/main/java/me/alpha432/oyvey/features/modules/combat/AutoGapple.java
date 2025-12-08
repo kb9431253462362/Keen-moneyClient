@@ -28,16 +28,13 @@ public class AutoGapple extends Module {
             }
             
             if (gappleSlot != -1) {
-                // FIX: Use the local variable 'selected' to store and restore the current slot.
                 int oldSlot = mc.player.getInventory().selected; 
                 
-                // FIX: Use the setter method
-                mc.player.getInventory().setSelected(gappleSlot);
+                mc.player.getInventory().selected = gappleSlot;
                 
                 mc.gameMode.useItem(mc.player, InteractionHand.MAIN_HAND);
                 
-                // FIX: Use the setter method
-                mc.player.getInventory().setSelected(oldSlot);
+                mc.player.getInventory().selected = oldSlot;
             }
         }
     }
