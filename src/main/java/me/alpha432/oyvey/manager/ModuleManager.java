@@ -28,14 +28,14 @@ import me.alpha432.oyvey.features.modules.movement.Jesus;
 import me.alpha432.oyvey.features.modules.movement.Flight;
 import me.alpha432.oyvey.features.modules.movement.SafeWalk;
 import me.alpha432.oyvey.features.modules.player.FastThrowXP;
-import me.alpha432.oyvey.features.modules.combat.AutoCrystal;
+
 import me.alpha432.oyvey.features.modules.combat.Killaura;
 import me.alpha432.oyvey.features.modules.combat.Reach;
 
 
 
 // Assuming these two modules were created in previous steps
-import me.alpha432.oyvey.features.modules.player.AutoSprint;
+
 
 
 
@@ -58,7 +58,7 @@ public class ModuleManager implements Jsonable, Util {
         
         // --- Combat Modules ---
         register(new Criticals());
-        register(new AutoCrystal());
+ 
         register(new Killaura());
         register(new Reach());
         
@@ -79,16 +79,14 @@ public class ModuleManager implements Jsonable, Util {
         register(new Velocity());
         register(new NoFall());
         register(new FastThrowXP());
-        register(new AutoSprint()); 
+   
 
         // --- Misc Modules ---
         register(new MCF());
 
         // --- Render Modules ---
         register(new BlockHighlight());
-        // REMOVED:   <-- NEW (Assuming you created this)
-        
-        // Removed `register(new PlayerESP());` as it was likely a placeholder for ESP or AutoSprint
+      
     }
     public void register(Module module) {
         getModules().add(module);
