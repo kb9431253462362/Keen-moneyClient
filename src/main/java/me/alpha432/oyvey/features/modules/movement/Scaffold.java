@@ -1,7 +1,8 @@
-package me.gamrboy4life.paradox.module.movement;
+package me.alpha432.oyvey.features.modules.movement; 
 
-import me.gamrboy4life.paradox.module.Category;
-import me.gamrboy4life.paradox.module.Module;
+import me.alpha432.oyvey.features.modules.Module;
+
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
