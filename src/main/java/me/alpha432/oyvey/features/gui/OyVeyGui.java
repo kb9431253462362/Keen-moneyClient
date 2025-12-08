@@ -23,7 +23,7 @@ public class OyVeyGui extends Screen {
     /* * ADDED: Static Color object for a dark green accent (RGB: 0, 100, 0)
      * You will use this in your rendering methods for lines, borders, and text.
      */
-    public static final Color CLICK_GUI_COLOR = new Color(0, 100, 0); 
+    public static final Color CLICK_GUI_COLOR = new Color(150, 150, 150); 
 
     static {
         INSTANCE = new OyVeyGui();
