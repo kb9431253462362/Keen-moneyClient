@@ -5,7 +5,9 @@ import me.alpha432.oyvey.features.settings.Setting;
 
 public class Reach extends Module {
 
-    private final Setting<Double> range = num("Range", 5.0, 3.0, 7.0);
+    private final Setting<Double> extraBlockReach = num("Extra Block Reach", 1.0, 0.0, 7.0);
+    private final Setting<Double> extraEntityReach = num("Extra Entity Reach", 1.0, 0.0, 7.0);
+    
 
     public Reach() {
         super("Reach", "Increases block and entity interaction distance.", Category.COMBAT);
@@ -13,6 +15,14 @@ public class Reach extends Module {
 
     @Override
     public void onTick() {
-        if (nullCheck()) return;
+        
+    }
+
+    public double getExtraBlockReach() {
+        return isEnabled() ? extraBlockReach.getValue() : 0.0;
+    }
+
+    public double getExtraEntityReach() {
+        return isEnabled() ? extraEntityReach.getValue() : 0.0;
     }
 }
