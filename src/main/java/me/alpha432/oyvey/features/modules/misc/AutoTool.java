@@ -1,4 +1,4 @@
-package me.alpha432.oyvey.features.modules.player; // Changed package assumption to player
+package me.alpha432.oyvey.features.modules.player; 
 
 import me.alpha432.oyvey.features.modules.Module;
 import net.minecraft.core.BlockPos;
@@ -15,16 +15,13 @@ public class AutoTool extends Module {
     public void onTick() {
         if (nullCheck()) return;
         
-        // NOTE: This logic requires utility to get the targeted block.
-        // Assuming mc.gameMode.isDestroying() means a block is being targeted/broken.
         if (mc.gameMode.isDestroying()) {
-            BlockPos targetPos = null; // Placeholder for targeted block position
+            BlockPos targetPos = null;
 
             if (targetPos != null) {
                 int bestSlot = findBestTool(targetPos);
                 if (bestSlot != -1) {
-                    // FIX: Use the setter method
-                    mc.player.getInventory().setSelected(bestSlot); 
+                    mc.player.getInventory().selected = bestSlot; 
                 }
             }
         }
