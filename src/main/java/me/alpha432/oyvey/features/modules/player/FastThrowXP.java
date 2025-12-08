@@ -4,7 +4,7 @@ import me.alpha432.oyvey.features.modules.Module;
 import net.minecraft.world.item.Items;
 
 public class FastThrowXP extends Module {
-    public FastPlace() {
+    public FastThrowXP() {
         super("FastThrowXP", "Makes you throw exp faster", Category.PLAYER);
     }
 
@@ -17,3 +17,4 @@ public class FastThrowXP extends Module {
         }
     }
 }
+
