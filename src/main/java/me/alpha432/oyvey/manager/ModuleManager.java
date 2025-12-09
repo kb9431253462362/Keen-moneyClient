@@ -28,7 +28,7 @@ import me.alpha432.oyvey.features.modules.movement.Jesus;
 import me.alpha432.oyvey.features.modules.movement.Flight;
 import me.alpha432.oyvey.features.modules.movement.SafeWalk;
 import me.alpha432.oyvey.features.modules.player.FastThrowXP;
-
+import me.alpha432.oyvey.features.modules.combat.ChatSpammer;
 import me.alpha432.oyvey.features.modules.combat.Killaura;
 import me.alpha432.oyvey.features.modules.combat.Reach;
 
@@ -76,6 +76,7 @@ public class ModuleManager implements Jsonable, Util {
 
     // --- Misc Modules ---
     register(new MCF());
+      register(new ChatSpammer());
 
     // --- Render Modules ---
     register(new BlockHighlight());
