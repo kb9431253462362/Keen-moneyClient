@@ -1,18 +1,13 @@
 package me.alpha432.oyvey.features.modules.movement;
 
 import me.alpha432.oyvey.features.modules.Module;
+import me.alpha432.oyvey.features.settings.Setting;
 import net.minecraft.world.phys.Vec3;
 
 public class Speed extends Module {
-
-    // Base speed factor (0.2873 is vanilla speed in blocks/tick)
-    private final double BASE_SPEED = 2; 
-    
-    // Default factor when not holding Shift
-    private final double DEFAULT_FACTOR = 3; 
-    
-    // Boost factor when holding Shift (3x faster than default)
-    private final double BOOST_FACTOR = 3.9; // 1.3 * 3 = 3.9
+    private final Setting<Double> speedMultiplier = num("SpeedMult", 1.5, 0.5, 5.0);
+    private final Setting<Double> boostMultiplier = num("BoostMult", 2.5, 0.5, 5.0);
+    private final Setting<Mode> mode = mode("Mode", Mode.Strafe);
 
     public Speed() {
         super("Speed", "Makes the player move faster. Boost with LShift.", Category.MOVEMENT);
@@ -20,36 +15,39 @@ public class Speed extends Module {
 
     @Override
     public void onTick() {
-        if (mc.player == null || mc.player.isInWater() || mc.player.isInLava()) return;
+        if (nullCheck() || mc.player.isInWater() || mc.player.isInLava()) return;
 
         double forward = mc.player.xxa;
         double strafe = mc.player.zza;
         float yaw = mc.player.getYRot();
 
-        // 1. Determine the current speed multiplier
-        double currentSpeedFactor;
-        
-        // Check if the sneak key (Left Shift) is currently pressed
-        if (mc.options.keyShift.isDown()) {
-            currentSpeedFactor = BOOST_FACTOR;
-        } else {
-            currentSpeedFactor = DEFAULT_FACTOR;
-        }
-
-        double finalSpeed = BASE_SPEED * currentSpeedFactor;
-
         if (forward == 0.0 && strafe == 0.0) {
-            // Stop horizontal movement
             mc.player.setDeltaMovement(0.0, mc.player.getDeltaMovement().y, 0.0);
-        } else {
-            // 2. Calculate Direction and Set Velocity
-            
-            // Adjust speeds for horizontal movement calculation
-            double motionX = (forward * finalSpeed * Math.cos(Math.toRadians(yaw + 90.0f)) + strafe * finalSpeed * Math.sin(Math.toRadians(yaw + 90.0f))) / 20.0;
-            double motionZ = (forward * finalSpeed * Math.sin(Math.toRadians(yaw + 90.0f)) - strafe * finalSpeed * Math.cos(Math.toRadians(yaw + 90.0f))) / 20.0;
-            
-            // Apply the new horizontal velocity, preserving vertical velocity
-            mc.player.setDeltaMovement(new Vec3(motionX, mc.player.getDeltaMovement().y, motionZ));
+            return;
         }
+
+        double mult = mc.options.keyShift.isDown() ? boostMultiplier.getValue() : speedMultiplier.getValue();
+
+        switch (mode.getValue()) {
+            case Strafe -> applyStrafe(forward, strafe, yaw, mult);
+            case Vanilla -> applyVanilla(mult);
+        }
+    }
+
+    private void applyStrafe(double forward, double strafe, float yaw, double mult) {
+        double yawRad = Math.toRadians(yaw);
+        double motionX = (forward * Math.sin(yawRad) + strafe * Math.cos(yawRad)) * mult / 20.0;
+        double motionZ = (forward * Math.cos(yawRad) - strafe * Math.sin(yawRad)) * mult / 20.0;
+        mc.player.setDeltaMovement(new Vec3(motionX, mc.player.getDeltaMovement().y, motionZ));
+    }
+
+    private void applyVanilla(double mult) {
+        Vec3 vel = mc.player.getDeltaMovement();
+        mc.player.setDeltaMovement(vel.x * mult, vel.y, vel.z * mult);
+    }
+
+    public enum Mode {
+        Strafe,
+        Vanilla
     }
 }
